@@ -1,0 +1,30 @@
+{
+  "name": "shriram_engineer_app",
+  "version": "1.0.0",
+  "description": "shriram engineer apps api",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "BASE 2 MEDIA WORKS",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.241.1",
+    "bcrypt": "^2.0.1",
+    "body-parser": "^1.18.3",
+    "busboy": "^0.2.14",
+    "busboy-body-parser": "^0.3.2",
+    "connect-busboy": "0.0.2",
+    "connect-multiparty": "^2.1.0",
+    "excel-class": "^0.2.0",
+    "exceljs": "^1.4.12",
+    "express": "^4.16.3",
+    "firebase": "^5.0.3",
+    "google-charts": "^1.1.0",
+    "morgan": "^1.9.0",
+    "mysql": "^2.15.0",
+    "s3": "^4.4.0",
+    "s3-nodejs-sample": "^1.0.9",
+    "s3fs": "git+https://github.com/RiptideCloud/s3fs.git"
+  }
+}
