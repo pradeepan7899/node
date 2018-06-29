@@ -6165,16 +6165,16 @@ router.post('/fileupload',(req, res, next) => {
 
  //configuring the AWS environment
  AWS.config.update({
-    accessKeyId: "AKIAIJXPK6OEO73DRBIA",
-    secretAccessKey: "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"
+    accessKeyId: "XXXXXX",
+    secretAccessKey: "YYYYYY"
  });
 
  var s3 = new AWS.S3();
- var filePath = "api/routes/StructureActivities_SouthrenCrest.xlsx";
+ var filePath = "StructureActivities_SouthrenCrest.xlsx";
 
  //configuring parameters
   var params = {
-  Bucket: 'streetsmartb2',
+  Bucket: 'XYXYXYX',
   Body : fs.createReadStream(filePath),
   Key : "folder/"+Date.now()+"_"+path.basename(filePath)
   };
