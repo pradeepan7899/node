@@ -4,9 +4,7 @@ const morgan  = require('morgan');
 const bodyParser = require('body-parser');
 
 
-
-const productRoutes = require('./api/routes/product');
-const orderRoutes   = require('./api/routes/order');
+const loginRoute    = require('./api/routes/authenticate'); 
 
 //loging
 app.use(morgan('dev'));
@@ -30,8 +28,7 @@ app.use((req, res, next)=>{
 
 
 //routes to handle requests
-app.use('/product',productRoutes)
-app.use('/order',orderRoutes)
+app.use('/userauthenticate',loginRoute)
 
 //error handling middleware
 app.use((req, res, next)=>{
