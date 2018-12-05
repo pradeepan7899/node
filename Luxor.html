@@ -1,0 +1,1811 @@
+
+
+<html>
+  <head>
+      <!--google dependencies-->
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <!--PDF dependencies-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+
+      <!--BootStrap 4 links-->
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/js/gijgo.min.js" type="text/javascript"></script>
+      <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.10/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+       <style>
+           .input-group>.input-group-append>.btn, .input-group>.input-group-append>.input-group-text, .input-group>.input-group-prepend:first-child>.btn:not(:first-child), .input-group>.input-group-prepend:first-child>.input-group-text:not(:first-child), .input-group>.input-group-prepend:not(:first-child)>.btn, .input-group>.input-group-prepend:not(:first-child)>.input-group-text {
+             border-top-left-radius: 0;
+             border-bottom-left-radius: 0;
+             top: 10px;
+            }
+
+            .content {display:none;}
+            .preload { width:100px;
+                      height: 100px;
+                      position: fixed;
+                      top: 50%;
+                      left: 50%;}
+
+       </style> 
+
+       <!--Loader Dependency-->
+      <div class="preload"><img src="http://i.imgur.com/KUJoe.gif"></div>
+      
+      <script type="text/javascript">
+       
+        var response = httpGet();           
+
+        DATE;
+       
+   
+     function drawAxisTickColors() {
+         console.log(response);
+        
+         //tower A chart
+        data = new google.visualization.DataTable();
+
+        data.addColumn('string',"Activity");
+        data.addColumn('number',"Completed",{ role: 'annotation' });
+        data.addColumn({type: 'number', role: 'annotation'});
+        data.addColumn('number',"Completed Now",{ role: 'annotation' });
+        data.addColumn({type: 'number', role: 'annotation'});
+        data.addColumn('number',"Balance",{ role: 'annotation' });
+        data.addColumn({type: 'number', role: 'annotation'});
+
+
+         for(var i=0;i<response[0]["completedTA"].length-1;i++) {
+               data.addRows([
+                     [response[0]["completedTA"][i][0],response[0]["completedTA"][i][1],response[0]["completedTA"][i][1],response[0]["completednowTA"][i][1],response[0]["completednowTA"][i][1],response[0]["balanceTA"][i][1],response[0]["balanceTA"][i][1]]
+               ]);
+         }
+
+
+         //tower B chart
+         data1 = new google.visualization.DataTable();
+
+         data1.addColumn('string',"Activity");
+         data1.addColumn('number',"Completed",{ role: 'annotation' });
+         data1.addColumn({type: 'number', role: 'annotation'});
+         data1.addColumn('number',"Completed Now",{ role: 'annotation' });
+         data1.addColumn({type: 'number', role: 'annotation'});
+         data1.addColumn('number',"Balance",{ role: 'annotation' });
+         data1.addColumn({type: 'number', role: 'annotation'});
+
+
+        for(var i=0;i<response[0]["completedTB"].length;i++) {
+            data1.addRows([
+                    [response[0]["completedTB"][i][0],response[0]["completedTB"][i][1],response[0]["completedTB"][i][1],response[0]["completednowTB"][i][1],response[0]["completednowTB"][i][1],response[0]["balanceTB"][i][1],response[0]["balanceTB"][i][1]]
+            ]);
+        }
+
+         //tower C chart
+         data2 = new google.visualization.DataTable();
+
+         data2.addColumn('string',"Activity");
+         data2.addColumn('number',"Completed",{ role: 'annotation' });
+         data2.addColumn({type: 'number', role: 'annotation'});
+         data2.addColumn('number',"Completed Now",{ role: 'annotation' });
+         data2.addColumn({type: 'number', role: 'annotation'});
+         data2.addColumn('number',"Balance",{ role: 'annotation' });
+         data2.addColumn({type: 'number', role: 'annotation'});
+
+
+        for(var i=0;i<response[0]["completedTC"].length;i++) {
+            data2.addRows([
+                    [response[0]["completedTC"][i][0],response[0]["completedTC"][i][1],response[0]["completedTC"][i][1],response[0]["completednowTC"][i][1],response[0]["completednowTC"][i][1],response[0]["balanceTC"][i][1],response[0]["balanceTC"][i][1]]
+            ]);
+        }
+
+         //tower D chart
+         data3 = new google.visualization.DataTable();
+
+         data3.addColumn('string',"Activity");
+         data3.addColumn('number',"Completed",{ role: 'annotation' });
+         data3.addColumn({type: 'number', role: 'annotation'});
+         data3.addColumn('number',"Completed Now",{ role: 'annotation' });
+         data3.addColumn({type: 'number', role: 'annotation'});
+         data3.addColumn('number',"Balance",{ role: 'annotation' });
+         data3.addColumn({type: 'number', role: 'annotation'});
+
+
+        for(var i=0;i<response[0]["completedTD"].length;i++) {
+            data3.addRows([
+                    [response[0]["completedTD"][i][0],response[0]["completedTD"][i][1],response[0]["completedTD"][i][1],response[0]["completednowTD"][i][1],response[0]["completednowTD"][i][1],response[0]["balanceTD"][i][1],response[0]["balanceTD"][i][1]]
+            ]);
+        }
+
+         //tower E chart
+         data4 = new google.visualization.DataTable();
+
+         data4.addColumn('string',"Activity");
+         data4.addColumn('number',"Completed",{ role: 'annotation' });
+         data4.addColumn({type: 'number', role: 'annotation'});
+         data4.addColumn('number',"Completed Now",{ role: 'annotation' });
+         data4.addColumn({type: 'number', role: 'annotation'});
+         data4.addColumn('number',"Balance",{ role: 'annotation' });
+         data4.addColumn({type: 'number', role: 'annotation'});
+
+
+        for(var i=0;i<response[0]["completedTE"].length;i++) {
+            data4.addRows([
+                    [response[0]["completedTE"][i][0],response[0]["completedTE"][i][1],response[0]["completedTE"][i][1],response[0]["completednowTE"][i][1],response[0]["completednowTE"][i][1],response[0]["balanceTE"][i][1],response[0]["balanceTE"][i][1]]
+            ]);
+        }
+
+         //tower F chart
+         data5 = new google.visualization.DataTable();
+
+         data5.addColumn('string',"Activity");
+         data5.addColumn('number',"Completed",{ role: 'annotation' });
+         data5.addColumn({type: 'number', role: 'annotation'});
+         data5.addColumn('number',"Completed Now",{ role: 'annotation' });
+         data5.addColumn({type: 'number', role: 'annotation'});
+         data5.addColumn('number',"Balance",{ role: 'annotation' });
+         data5.addColumn({type: 'number', role: 'annotation'});
+
+
+        for(var i=0;i<response[0]["completedTF"].length-2;i++) {
+            data5.addRows([
+                    [response[0]["completedTF"][i][0],response[0]["completedTF"][i][1],response[0]["completedTF"][i][1],response[0]["completednowTF"][i][1],response[0]["completednowTF"][i][1],response[0]["balanceTF"][i][1],response[0]["balanceTF"][i][1]]
+            ]);
+        }
+
+         //tower G chart
+         data6 = new google.visualization.DataTable();
+
+         data6.addColumn('string',"Activity");
+         data6.addColumn('number',"Completed",{ role: 'annotation' });
+         data6.addColumn({type: 'number', role: 'annotation'});
+         data6.addColumn('number',"Completed Now",{ role: 'annotation' });
+         data6.addColumn({type: 'number', role: 'annotation'});
+         data6.addColumn('number',"Balance",{ role: 'annotation' });
+         data6.addColumn({type: 'number', role: 'annotation'});
+
+
+        for(var i=0;i<response[0]["completedTG"].length;i++) {
+            data6.addRows([
+                    [response[0]["completedTG"][i][0],response[0]["completedTG"][i][1],response[0]["completedTG"][i][1],response[0]["completednowTG"][i][1],response[0]["completednowTG"][i][1],response[0]["balanceTG"][i][1],response[0]["balanceTG"][i][1]]
+            ]);
+        }
+
+         //tower H chart
+         data7 = new google.visualization.DataTable();
+
+         data7.addColumn('string',"Activity");
+         data7.addColumn('number',"Completed",{ role: 'annotation' });
+         data7.addColumn({type: 'number', role: 'annotation'});
+         data7.addColumn('number',"Completed Now",{ role: 'annotation' });
+         data7.addColumn({type: 'number', role: 'annotation'});
+         data7.addColumn('number',"Balance",{ role: 'annotation' });
+         data7.addColumn({type: 'number', role: 'annotation'});
+
+
+        for(var i=0;i<response[0]["completedTH"].length;i++) {
+            data7.addRows([
+                    [response[0]["completedTH"][i][0],response[0]["completedTH"][i][1],response[0]["completedTH"][i][1],response[0]["completednowTH"][i][1],response[0]["completednowTH"][i][1],response[0]["balanceTH"][i][1],response[0]["balanceTH"][i][1]]
+            ]);
+        }
+
+         //tower A commonlobby chart
+         data8 = new google.visualization.DataTable();
+
+         data8.addColumn('string',"Activity");
+         data8.addColumn('number',"Completed",{ role: 'annotation' });
+         data8.addColumn({type: 'number', role: 'annotation'});
+         data8.addColumn('number',"Completed Now",{ role: 'annotation' });
+         data8.addColumn({type: 'number', role: 'annotation'});
+         data8.addColumn('number',"Balance",{ role: 'annotation' });
+         data8.addColumn({type: 'number', role: 'annotation'});
+
+
+        for(var i=0;i<response[1]["completedA"].length;i++) {
+            data8.addRows([
+                    [response[1]["completedA"][i][0],response[1]["completedA"][i][1],response[1]["completedA"][i][1],response[1]["completednowA"][i][1],response[1]["completednowA"][i][1],response[1]["balanceA"][i][1],response[1]["balanceA"][i][1]]
+            ]);
+        }
+
+
+         //tower B commonlobby chart
+         data9 = new google.visualization.DataTable();
+
+         data9.addColumn('string',"Activity");
+         data9.addColumn('number',"Completed",{ role: 'annotation' });
+         data9.addColumn({type: 'number', role: 'annotation'});
+         data9.addColumn('number',"Completed Now",{ role: 'annotation' });
+         data9.addColumn({type: 'number', role: 'annotation'});
+         data9.addColumn('number',"Balance",{ role: 'annotation' });
+         data9.addColumn({type: 'number', role: 'annotation'});
+
+
+        for(var i=0;i<response[1]["completedB"].length;i++) {
+            data9.addRows([
+                    [response[1]["completedB"][i][0],response[1]["completedB"][i][1],response[1]["completedB"][i][1],response[1]["completednowB"][i][1],response[1]["completednowB"][i][1],response[1]["balanceB"][i][1],response[1]["balanceB"][i][1]]
+            ]);
+        }
+
+         //tower C commonlobby chart
+         data10 = new google.visualization.DataTable();
+
+         data10.addColumn('string',"Activity");
+         data10.addColumn('number',"Completed",{ role: 'annotation' });
+         data10.addColumn({type: 'number', role: 'annotation'});
+         data10.addColumn('number',"Completed Now",{ role: 'annotation' });
+         data10.addColumn({type: 'number', role: 'annotation'});
+         data10.addColumn('number',"Balance",{ role: 'annotation' });
+         data10.addColumn({type: 'number', role: 'annotation'});
+
+
+        for(var i=0;i<response[1]["completedC"].length;i++) {
+            data10.addRows([
+                    [response[1]["completedC"][i][0],response[1]["completedC"][i][1],response[1]["completedC"][i][1],response[1]["completednowC"][i][1],response[1]["completednowC"][i][1],response[1]["balanceC"][i][1],response[1]["balanceC"][i][1]]
+            ]);
+        }
+
+         //tower D commonlobby chart
+         data11 = new google.visualization.DataTable();
+
+         data11.addColumn('string',"Activity");
+         data11.addColumn('number',"Completed",{ role: 'annotation' });
+         data11.addColumn({type: 'number', role: 'annotation'});
+         data11.addColumn('number',"Completed Now",{ role: 'annotation' });
+         data11.addColumn({type: 'number', role: 'annotation'});
+         data11.addColumn('number',"Balance",{ role: 'annotation' });
+         data11.addColumn({type: 'number', role: 'annotation'});
+
+
+        for(var i=0;i<response[1]["completedD"].length;i++) {
+            data11.addRows([
+                    [response[1]["completedD"][i][0],response[1]["completedD"][i][1],response[1]["completedD"][i][1],response[1]["completednowD"][i][1],response[1]["completednowD"][i][1],response[1]["balanceD"][i][1],response[1]["balanceD"][i][1]]
+            ]);
+        }
+
+         //tower E commonlobby chart
+         data12 = new google.visualization.DataTable();
+
+         data12.addColumn('string',"Activity");
+         data12.addColumn('number',"Completed",{ role: 'annotation' });
+         data12.addColumn({type: 'number', role: 'annotation'});
+         data12.addColumn('number',"Completed Now",{ role: 'annotation' });
+         data12.addColumn({type: 'number', role: 'annotation'});
+         data12.addColumn('number',"Balance",{ role: 'annotation' });
+         data12.addColumn({type: 'number', role: 'annotation'});
+
+
+        for(var i=0;i<response[1]["completedE"].length;i++) {
+
+            data12.addRows([
+            [response[1]["completedE"][i][0],response[1]["completedE"][i][1],response[1]["completedE"][i][1],response[1]["completedNowE"][i][1],response[1]["completedNowE"][i][1],response[1]["balanceE"][i][1],response[1]["balanceE"][i][1]]
+            ]);
+        }
+
+         //tower F commonlobby chart
+         data13 = new google.visualization.DataTable();
+
+         data13.addColumn('string',"Activity");
+         data13.addColumn('number',"Completed",{ role: 'annotation' });
+         data13.addColumn({type: 'number', role: 'annotation'});
+         data13.addColumn('number',"Completed Now",{ role: 'annotation' });
+         data13.addColumn({type: 'number', role: 'annotation'});
+         data13.addColumn('number',"Balance",{ role: 'annotation' });
+         data13.addColumn({type: 'number', role: 'annotation'});
+
+
+        for(var i=0;i<response[1]["completedF"].length;i++) {
+            data13.addRows([
+                    [response[1]["completedF"][i][0],response[1]["completedF"][i][1],response[1]["completedF"][i][1],response[1]["completedNowF"][i][1],response[1]["completedNowF"][i][1],response[1]["balanceF"][i][1],response[1]["balanceF"][i][1]]
+            ]);
+        }
+
+
+         //tower G commonlobby chart
+         data14 = new google.visualization.DataTable();
+
+         data14.addColumn('string',"Activity");
+         data14.addColumn('number',"Completed",{ role: 'annotation' });
+         data14.addColumn({type: 'number', role: 'annotation'});
+         data14.addColumn('number',"Completed Now",{ role: 'annotation' });
+         data14.addColumn({type: 'number', role: 'annotation'});
+         data14.addColumn('number',"Balance",{ role: 'annotation' });
+         data14.addColumn({type: 'number', role: 'annotation'});
+
+
+        for(var i=0;i<response[1]["completedG"].length;i++) {
+            data14.addRows([
+                    [response[1]["completedG"][i][0],response[1]["completedG"][i][1],response[1]["completedG"][i][1],response[1]["completedNowG"][i][1],response[1]["completedNowG"][i][1],response[1]["balanceG"][i][1],response[1]["balanceG"][i][1]]
+            ]);
+        }
+
+         //tower H commonlobby chart
+         data15 = new google.visualization.DataTable();
+
+         data15.addColumn('string',"Activity");
+         data15.addColumn('number',"Completed",{ role: 'annotation' });
+         data15.addColumn({type: 'number', role: 'annotation'});
+         data15.addColumn('number',"Completed Now",{ role: 'annotation' });
+         data15.addColumn({type: 'number', role: 'annotation'});
+         data15.addColumn('number',"Balance",{ role: 'annotation' });
+         data15.addColumn({type: 'number', role: 'annotation'});
+
+
+        for(var i=0;i<response[1]["completedH"].length;i++) {
+            data15.addRows([
+                    [response[1]["completedH"][i][0],response[1]["completedH"][i][1],response[1]["completedH"][i][1],response[1]["completedNowH"][i][1],response[1]["completedNowH"][i][1],response[1]["balanceH"][i][1],response[1]["balanceH"][i][1]]
+            ]);
+        }
+
+
+     //tower A
+     options = {
+      width: 1600,
+      height: 750,
+      chartArea: {
+        top: 150,
+        height: '60%' 
+      },
+      legend: {
+               position: 'right',
+               labeledValueText: 'value',
+               maxLines: 3,
+               textStyle: {
+                    text: '10',
+                    fontSize: 14
+               } 
+      },
+      bar: { groupWidth: '55%' },
+      title: "LUXOR FLAT FINISH ACTIVITIES TOWER A - "+DATE,
+      titleTextStyle: {
+         color: '#2c6ed5'
+       },
+      theme: 'stroke-width',
+      isStacked: true,
+      animation: {
+                    duration: 10000, 
+                    easing: 'out'
+      },
+      hAxis: {
+               title: "Activity" ,
+               slantedText:true, 
+               slantedTextAngle:40,
+               fontName: 'Times New Roman',
+               textStyle: {
+                   color: "black",
+                   italic: true,
+                   fontSize:14
+               },
+               viewWindowMode: 'pretty', 
+      },
+      vAxis: {
+          title: "Tower-A Total Unit Count" ,
+          slantedText:true,
+          slantedTextAngle:90,
+          viewWindow: {
+                 min: 0,
+                 max: response['towerA']+3
+          }
+      },
+      titleTextStyle: {
+             color:'Black',
+             fontSize: 18,
+             bold: true,
+             align: 'center'
+     },
+     colors: ['#239B56','#F1C40F', '#C0392B'],
+     trendlines: {
+             0: {}
+     },
+     annotations: {
+        textStyle: {
+        auraColor: 'none',
+        opacity: 0.8,
+        fontSize: 11
+        },
+        highContrast: true,
+        stemColor : 'none',
+        stem: {
+          length:0
+        }
+     }
+    };
+
+
+    //tower B
+     options1 = {
+      width: 1600,
+      height: 750,
+      chartArea: {
+        top: 150,
+        height: '60%' 
+      },
+      legend: {
+               position: 'right',
+               labeledValueText: 'value',
+               maxLines: 3,
+               textStyle: {
+                    text: '10',
+                    fontSize: 14
+               } 
+      },
+      bar: { groupWidth: '55%' },
+      title: "LUXOR FLAT FINISH ACTIVITIES TOWER B - "+DATE,
+      theme: 'stroke-width',
+      isStacked: true,
+      animation: {
+                    duration: 10000, 
+                    easing: 'out'
+      },
+      hAxis: {
+               title: "Activity" ,
+               slantedText:true, 
+               slantedTextAngle:40,
+               fontName: 'Times New Roman',
+               textStyle: {
+                   color: "black",
+                   italic: true,
+                   fontSize:14
+               },
+               viewWindowMode: 'pretty', 
+      },
+      vAxis: {
+          title: "Tower-B Total Unit Count" ,
+          slantedText:true,
+          slantedTextAngle:90,
+          viewWindow: {
+                 min: 0,
+                 max: response['towerB']+3
+          }
+      },
+      titleTextStyle: {
+             color:'Black',
+             fontSize: 18,
+             bold: true,
+             align: 'center'
+     },
+     colors: ['#239B56','#F1C40F', '#C0392B'],
+     trendlines: {
+             0: {}
+     },
+     annotations: {
+        textStyle: {
+        auraColor: 'none',
+        opacity: 0.8,
+        fontSize: 11
+        },
+        highContrast: true,
+        stemColor : 'none',
+        stem: {
+          length:0
+        }
+     }
+    };
+
+      //tower C
+      options2 = {
+      width: 1600,
+      height: 750,
+      chartArea: {
+        top: 150,
+        height: '60%' 
+      },
+      legend: {
+               position: 'right',
+               labeledValueText: 'value',
+               maxLines: 3,
+               textStyle: {
+                    text: '10',
+                    fontSize: 14
+               } 
+      },
+      bar: { groupWidth: '55%' },
+      title: "LUXOR FLAT FINISH ACTIVITIES TOWER C - "+DATE,
+      theme: 'stroke-width',
+      isStacked: true,
+      animation: {
+                    duration: 10000, 
+                    easing: 'out'
+      },
+      hAxis: {
+               title: "Activity" ,
+               slantedText:true, 
+               slantedTextAngle:40,
+               fontName: 'Times New Roman',
+               textStyle: {
+                   color: "black",
+                   italic: true,
+                   fontSize:14
+               },
+               viewWindowMode: 'pretty', 
+      },
+      vAxis: {
+          title: "Tower-C Total Unit Count" ,
+          slantedText:true,
+          slantedTextAngle:90,
+          viewWindow: {
+                 min: 0,
+                 max: response['towerC']+3
+          }
+      },
+      titleTextStyle: {
+             color:'Black',
+             fontSize: 18,
+             bold: true,
+             align: 'center'
+     },
+     colors: ['#239B56','#F1C40F', '#C0392B'],
+     trendlines: {
+             0: {}
+     },
+     annotations: {
+        textStyle: {
+        auraColor: 'none',
+        opacity: 0.8,
+        fontSize: 11
+        },
+        highContrast: true,
+        stemColor : 'none',
+        stem: {
+          length:0
+        }
+     }
+    };
+
+     //tower D
+      options3 = {
+      width: 1600,
+      height: 750,
+      chartArea: {
+        top: 150,
+        height: '60%' 
+      },
+      legend: {
+               position: 'right',
+               labeledValueText: 'value',
+               maxLines: 3,
+               textStyle: {
+                    text: '10',
+                    fontSize: 14
+               } 
+      },
+      bar: { groupWidth: '55%' },
+      title: "LUXOR FLAT FINISH ACTIVITIES TOWER D - "+DATE,
+      theme: 'stroke-width',
+      isStacked: true,
+      animation: {
+                    duration: 10000, 
+                    easing: 'out'
+      },
+      hAxis: {
+               title: "Activity" ,
+               slantedText:true, 
+               slantedTextAngle:40,
+               fontName: 'Times New Roman',
+               textStyle: {
+                   color: "black",
+                   italic: true,
+                   fontSize:14
+               },
+               viewWindowMode: 'pretty', 
+      },
+      vAxis: {
+          title: "Tower-D Total Unit Count" ,
+          slantedText:true,
+          slantedTextAngle:90,
+          viewWindow: {
+                 min: 0,
+                 max: response['towerD']+3
+          }
+      },
+      titleTextStyle: {
+             color:'Black',
+             fontSize: 18,
+             bold: true,
+             align: 'center'
+     },
+     colors: ['#239B56','#F1C40F', '#C0392B'],
+     trendlines: {
+             0: {}
+     },
+     annotations: {
+        textStyle: {
+        auraColor: 'none',
+        opacity: 0.8,
+        fontSize: 11
+        },
+        highContrast: true,
+        stemColor : 'none',
+        stem: {
+          length:0
+        }
+     }
+    };
+
+      //tower E  
+      options4 = {
+      width: 1600,
+      height: 750,
+      chartArea: {
+        top: 150,
+        height: '60%' 
+      },
+      legend: {
+               position: 'right',
+               labeledValueText: 'value',
+               maxLines: 3,
+               textStyle: {
+                    text: '10',
+                    fontSize: 14
+               } 
+      },
+      bar: { groupWidth: '55%' },
+      title: "LUXOR FLAT FINISH ACTIVITIES TOWER E - "+DATE,
+      theme: 'stroke-width',
+      isStacked: true,
+      animation: {
+                    duration: 10000, 
+                    easing: 'out'
+      },
+      hAxis: {
+               title: "Activity" ,
+               slantedText:true, 
+               slantedTextAngle:40,
+               fontName: 'Times New Roman',
+               textStyle: {
+                   color: "black",
+                   italic: true,
+                   fontSize:14
+               },
+               viewWindowMode: 'pretty', 
+      },
+      vAxis: {
+          title: "Tower-E Unit Count" ,
+          slantedText:true,
+          slantedTextAngle:90,
+          viewWindow: {
+                 min: 0,
+                 max: response['towerE']+3
+          }
+      },
+      titleTextStyle: {
+             color:'Black',
+             fontSize: 18,
+             bold: true,
+             align: 'center'
+     },
+     colors: ['#239B56','#F1C40F', '#C0392B'],
+     trendlines: {
+             0: {}
+     },
+     annotations: {
+        textStyle: {
+        auraColor: 'none',
+        opacity: 0.8,
+        fontSize: 11
+        },
+        highContrast: true,
+        stemColor : 'none',
+        stem: {
+          length:0
+        }
+     }
+    };
+
+       //tower F 
+      options5 = {
+      width: 1600,
+      height: 750,
+      chartArea: {
+        top: 150,
+        height: '60%' 
+      },
+      legend: {
+               position: 'right',
+               labeledValueText: 'value',
+               maxLines: 3,
+               textStyle: {
+                    text: '10',
+                    fontSize: 14
+               } 
+      },
+      bar: { groupWidth: '55%' },
+      title: "LUXOR FLAT FINISH ACTIVITIES TOWER F - "+DATE,
+      theme: 'stroke-width',
+      isStacked: true,
+      animation: {
+                    duration: 10000, 
+                    easing: 'out'
+      },
+      hAxis: {
+               title: "Activity" ,
+               slantedText:true, 
+               slantedTextAngle:40,
+               fontName: 'Times New Roman',
+               textStyle: {
+                   color: "black",
+                   italic: true,
+                   fontSize:14
+               },
+               viewWindowMode: 'pretty', 
+      },
+      vAxis: {
+          title: "Tower-F Total Unit Count" ,
+          slantedText:true,
+          slantedTextAngle:90,
+          viewWindow: {
+                 min: 0,
+                 max: response['towerF']+3
+          }
+      },
+      titleTextStyle: {
+             color:'Black',
+             fontSize: 18,
+             bold: true,
+             align: 'center'
+     },
+     colors: ['#239B56','#F1C40F', '#C0392B'],
+     trendlines: {
+             0: {}
+     },
+     annotations: {
+        textStyle: {
+        auraColor: 'none',
+        opacity: 0.8,
+        fontSize: 11
+        },
+        highContrast: true,
+        stemColor : 'none',
+        stem: {
+          length:0
+        }
+     }
+    };
+
+        //tower G
+      options6 = {
+      width: 1600,
+      height: 750,
+      chartArea: {
+        top: 150,
+        height: '60%' 
+      },
+      legend: {
+               position: 'right',
+               labeledValueText: 'value',
+               maxLines: 3,
+               textStyle: {
+                    text: '10',
+                    fontSize: 14
+               } 
+      },
+      bar: { groupWidth: '55%' },
+      title: "LUXOR FLAT FINISH ACTIVITIES TOWER G - "+DATE,
+      theme: 'stroke-width',
+      isStacked: true,
+      animation: {
+                    duration: 10000, 
+                    easing: 'out'
+      },
+      hAxis: {
+               title: "Activity" ,
+               slantedText:true, 
+               slantedTextAngle:40,
+               fontName: 'Times New Roman',
+               textStyle: {
+                   color: "black",
+                   italic: true,
+                   fontSize:14
+               },
+               viewWindowMode: 'pretty', 
+      },
+      vAxis: {
+          title: "Tower-G Total Unit Count" ,
+          slantedText:true,
+          slantedTextAngle:90,
+          viewWindow: {
+                 min: 0,
+                 max: response['towerG']+3
+          }
+      },
+      titleTextStyle: {
+             color:'Black',
+             fontSize: 18,
+             bold: true,
+             align: 'center'
+     },
+     colors: ['#239B56','#F1C40F', '#C0392B'],
+     trendlines: {
+             0: {}
+     },
+     annotations: {
+        textStyle: {
+        auraColor: 'none',
+        opacity: 0.8,
+        fontSize: 11
+        },
+        highContrast: true,
+        stemColor : 'none',
+        stem: {
+          length:0
+        }
+     }
+    };
+
+        //tower H
+      options7 = {
+      width: 1600,
+      height: 750,
+      chartArea: {
+        top: 150,
+        height: '60%' 
+      },
+      legend: {
+               position: 'right',
+               labeledValueText: 'value',
+               maxLines: 3,
+               textStyle: {
+                    text: '10',
+                    fontSize: 14
+               } 
+      },
+      bar: { groupWidth: '55%' },
+      title: "LUXOR FLAT FINISH ACTIVITIES TOWER H - "+DATE,
+      theme: 'stroke-width',
+      isStacked: true,
+      animation: {
+                    duration: 10000, 
+                    easing: 'out'
+      },
+      hAxis: {
+               title: "Activity" ,
+               slantedText:true, 
+               slantedTextAngle:40,
+               fontName: 'Times New Roman',
+               textStyle: {
+                   color: "black",
+                   italic: true,
+                   fontSize:14
+               },
+               viewWindowMode: 'pretty', 
+      },
+      vAxis: {
+          title: "Tower-H Total Unit Count" ,
+          slantedText:true,
+          slantedTextAngle:90,
+          viewWindow: {
+                 min: 0,
+                 max: response['towerH']+3
+          }
+      },
+      titleTextStyle: {
+             color:'Black',
+             fontSize: 18,
+             bold: true,
+             align: 'center'
+     },
+     colors: ['#239B56','#F1C40F', '#C0392B'],
+     trendlines: {
+             0: {}
+     },
+     annotations: {
+        textStyle: {
+        auraColor: 'none',
+        opacity: 0.8,
+        fontSize: 11
+        },
+        highContrast: true,
+        stemColor : 'none',
+        stem: {
+          length:0
+        }
+     }
+    };
+
+     //tower A for commonlobby activities
+     options8 = {
+      width: 1400,
+      height: 700,
+      chartArea: {
+        top: 150,
+        height: '60%' 
+      },
+      legend: {
+               position: 'right',
+               labeledValueText: 'value',
+               maxLines: 3,
+               textStyle: {
+                    text: '10',
+                    fontSize: 14
+               } 
+      },
+      bar: { groupWidth: '55%' },
+      title: "LUXOR COMMON LOBBY ACTIVITIES TOWER-A - "+DATE,
+      titleTextStyle: {
+         color: '#2c6ed5'
+       },
+      theme: 'stroke-width',
+      isStacked: true,
+      animation: {
+                    duration: 10000, 
+                    easing: 'out'
+      },
+      hAxis: {
+               title: "Activity" ,
+               slantedText:true, 
+               slantedTextAngle:40,
+               fontName: 'Times New Roman',
+               textStyle: {
+                   color: "black",
+                   italic: true,
+                   fontSize:14
+               },
+               viewWindowMode: 'pretty', 
+      },
+      vAxis: {
+          title: "Tower-A Total Unit Count" ,
+          slantedText:true,
+          slantedTextAngle:90,
+          viewWindow: {
+                 min: 0,
+                 max: response[1]['towerA']
+          }
+      },
+      titleTextStyle: {
+             color:'Black',
+             fontSize: 18,
+             bold: true,
+             align: 'center'
+     },
+     colors: ['#239B56','#F1C40F', '#C0392B'],
+     trendlines: {
+             0: {}
+     },
+     annotations: {
+        textStyle: {
+        auraColor: 'none',
+        opacity: 0.8,
+        fontSize: 11
+        },
+        highContrast: true,
+        stemColor : 'none',
+        stem: {
+          length:0
+        }
+     }
+    };
+
+
+     //tower B for commonlobby activities
+     options9 = {
+      width: 1400,
+      height: 700,
+      chartArea: {
+        top: 150,
+        height: '60%' 
+      },
+      legend: {
+               position: 'right',
+               labeledValueText: 'value',
+               maxLines: 3,
+               textStyle: {
+                    text: '10',
+                    fontSize: 14
+               } 
+      },
+      bar: { groupWidth: '55%' },
+      title: "LUXOR COMMON LOBBY ACTIVITIES TOWER-B - "+DATE,
+      titleTextStyle: {
+         color: '#2c6ed5'
+       },
+      theme: 'stroke-width',
+      isStacked: true,
+      animation: {
+                    duration: 10000, 
+                    easing: 'out'
+      },
+      hAxis: {
+               title: "Activity" ,
+               slantedText:true, 
+               slantedTextAngle:40,
+               fontName: 'Times New Roman',
+               textStyle: {
+                   color: "black",
+                   italic: true,
+                   fontSize:14
+               },
+               viewWindowMode: 'pretty', 
+      },
+      vAxis: {
+          title: "Tower-B Total Unit Count" ,
+          slantedText:true,
+          slantedTextAngle:90,
+          viewWindow: {
+                 min: 0,
+                 max: response[1]['towerB']+0.5
+          }
+      },
+      titleTextStyle: {
+             color:'Black',
+             fontSize: 18,
+             bold: true,
+             align: 'center'
+     },
+     colors: ['#239B56','#F1C40F', '#C0392B'],
+     trendlines: {
+             0: {}
+     },
+     annotations: {
+        textStyle: {
+        auraColor: 'none',
+        opacity: 0.8,
+        fontSize: 11
+        },
+        highContrast: true,
+        stemColor : 'none',
+        stem: {
+          length:0
+        }
+     }
+    };
+
+
+     //tower C for commonlobby activities
+     options10 = {
+      width: 1400,
+      height: 700,
+      chartArea: {
+        top: 150,
+        height: '60%' 
+      },
+      legend: {
+               position: 'right',
+               labeledValueText: 'value',
+               maxLines: 3,
+               textStyle: {
+                    text: '10',
+                    fontSize: 14
+               } 
+      },
+      bar: { groupWidth: '55%' },
+      title: "LUXOR COMMON LOBBY ACTIVITIES TOWER-C - "+DATE,
+      titleTextStyle: {
+         color: '#2c6ed5'
+       },
+      theme: 'stroke-width',
+      isStacked: true,
+      animation: {
+                    duration: 10000, 
+                    easing: 'out'
+      },
+      hAxis: {
+               title: "Activity" ,
+               slantedText:true, 
+               slantedTextAngle:40,
+               fontName: 'Times New Roman',
+               textStyle: {
+                   color: "black",
+                   italic: true,
+                   fontSize:14
+               },
+               viewWindowMode: 'pretty', 
+      },
+      vAxis: {
+          title: "Tower-C Total Unit Count" ,
+          slantedText:true,
+          slantedTextAngle:90,
+          viewWindow: {
+                 min: 0,
+                 max: response[1]['towerC']+0.5
+          }
+      },
+      titleTextStyle: {
+             color:'Black',
+             fontSize: 18,
+             bold: true,
+             align: 'center'
+     },
+     colors: ['#239B56','#F1C40F', '#C0392B'],
+     trendlines: {
+             0: {}
+     },
+     annotations: {
+        textStyle: {
+        auraColor: 'none',
+        opacity: 0.8,
+        fontSize: 11
+        },
+        highContrast: true,
+        stemColor : 'none',
+        stem: {
+          length:0
+        }
+     }
+    };
+
+     //tower D for commonlobby activities
+     options11 = {
+      width: 1400,
+      height: 700,
+      chartArea: {
+        top: 150,
+        height: '60%' 
+      },
+      legend: {
+               position: 'right',
+               labeledValueText: 'value',
+               maxLines: 3,
+               textStyle: {
+                    text: '10',
+                    fontSize: 14
+               } 
+      },
+      bar: { groupWidth: '55%' },
+      title: "LUXOR COMMON LOBBY ACTIVITIES TOWER-D - "+DATE,
+      titleTextStyle: {
+         color: '#2c6ed5'
+       },
+      theme: 'stroke-width',
+      isStacked: true,
+      animation: {
+                    duration: 10000, 
+                    easing: 'out'
+      },
+      hAxis: {
+               title: "Activity" ,
+               slantedText:true, 
+               slantedTextAngle:40,
+               fontName: 'Times New Roman',
+               textStyle: {
+                   color: "black",
+                   italic: true,
+                   fontSize:14
+               },
+               viewWindowMode: 'pretty', 
+      },
+      vAxis: {
+          title: "Tower-D Total Unit Count" ,
+          slantedText:true,
+          slantedTextAngle:90,
+          viewWindow: {
+                 min: 0,
+                 max: response[1]['towerD']
+          }
+      },
+      titleTextStyle: {
+             color:'Black',
+             fontSize: 18,
+             bold: true,
+             align: 'center'
+     },
+     colors: ['#239B56','#F1C40F', '#C0392B'],
+     trendlines: {
+             0: {}
+     },
+     annotations: {
+        textStyle: {
+        auraColor: 'none',
+        opacity: 0.8,
+        fontSize: 11
+        },
+        highContrast: true,
+        stemColor : 'none',
+        stem: {
+          length:0
+        }
+     }
+    };
+
+     //tower E for commonlobby activities
+     options12 = {
+      width: 1400,
+      height: 700,
+      chartArea: {
+        top: 150,
+        height: '60%' 
+      },
+      legend: {
+               position: 'right',
+               labeledValueText: 'value',
+               maxLines: 3,
+               textStyle: {
+                    text: '10',
+                    fontSize: 14
+               } 
+      },
+      bar: { groupWidth: '55%' },
+      title: "LUXOR COMMON LOBBY ACTIVITIES TOWER-E - "+DATE,
+      titleTextStyle: {
+         color: '#2c6ed5'
+       },
+      theme: 'stroke-width',
+      isStacked: true,
+      animation: {
+                    duration: 10000, 
+                    easing: 'out'
+      },
+      hAxis: {
+               title: "Activity" ,
+               slantedText:true, 
+               slantedTextAngle:40,
+               fontName: 'Times New Roman',
+               textStyle: {
+                   color: "black",
+                   italic: true,
+                   fontSize:14
+               },
+               viewWindowMode: 'pretty', 
+      },
+      vAxis: {
+          title: "Tower-E Total Unit Count" ,
+          slantedText:true,
+          slantedTextAngle:90,
+          viewWindow: {
+                 min: 0,
+                 max: response[1]['towerE']
+          }
+      },
+      titleTextStyle: {
+             color:'Black',
+             fontSize: 18,
+             bold: true,
+             align: 'center'
+     },
+     colors: ['#239B56','#F1C40F', '#C0392B'],
+     trendlines: {
+             0: {}
+     },
+     annotations: {
+        textStyle: {
+        auraColor: 'none',
+        opacity: 0.8,
+        fontSize: 11
+        },
+        highContrast: true,
+        stemColor : 'none',
+        stem: {
+          length:0
+        }
+     }
+    };
+
+     //tower F for commonlobby activities
+     options13 = {
+      width: 1400,
+      height: 700,
+      chartArea: {
+        top: 150,
+        height: '60%' 
+      },
+      legend: {
+               position: 'right',
+               labeledValueText: 'value',
+               maxLines: 3,
+               textStyle: {
+                    text: '10',
+                    fontSize: 14
+               } 
+      },
+      bar: { groupWidth: '55%' },
+      title: "LUXOR COMMON LOBBY ACTIVITIES TOWER-F - "+DATE,
+      titleTextStyle: {
+         color: '#2c6ed5'
+       },
+      theme: 'stroke-width',
+      isStacked: true,
+      animation: {
+                    duration: 10000, 
+                    easing: 'out'
+      },
+      hAxis: {
+               title: "Activity" ,
+               slantedText:true, 
+               slantedTextAngle:40,
+               fontName: 'Times New Roman',
+               textStyle: {
+                   color: "black",
+                   italic: true,
+                   fontSize:14
+               },
+               viewWindowMode: 'pretty', 
+      },
+      vAxis: {
+          title: "Tower-F Total Unit Count" ,
+          slantedText:true,
+          slantedTextAngle:90,
+          viewWindow: {
+                 min: 0,
+                 max: response[1]['towerF']
+          }
+      },
+      titleTextStyle: {
+             color:'Black',
+             fontSize: 18,
+             bold: true,
+             align: 'center'
+     },
+     colors: ['#239B56','#F1C40F', '#C0392B'],
+     trendlines: {
+             0: {}
+     },
+     annotations: {
+        textStyle: {
+        auraColor: 'none',
+        opacity: 0.8,
+        fontSize: 11
+        },
+        highContrast: true,
+        stemColor : 'none',
+        stem: {
+          length:0
+        }
+     }
+    };
+
+     //tower G for commonlobby activities
+     options14 = {
+      width: 1400,
+      height: 700,
+      chartArea: {
+        top: 150,
+        height: '60%' 
+      },
+      legend: {
+               position: 'right',
+               labeledValueText: 'value',
+               maxLines: 3,
+               textStyle: {
+                    text: '10',
+                    fontSize: 14
+               } 
+      },
+      bar: { groupWidth: '55%' },
+      title: "LUXOR COMMON LOBBY ACTIVITIES TOWER-G - "+DATE,
+      titleTextStyle: {
+         color: '#2c6ed5'
+       },
+      theme: 'stroke-width',
+      isStacked: true,
+      animation: {
+                    duration: 10000, 
+                    easing: 'out'
+      },
+      hAxis: {
+               title: "Activity" ,
+               slantedText:true, 
+               slantedTextAngle:40,
+               fontName: 'Times New Roman',
+               textStyle: {
+                   color: "black",
+                   italic: true,
+                   fontSize:14
+               },
+               viewWindowMode: 'pretty', 
+      },
+      vAxis: {
+          title: "Tower-G Total Unit Count" ,
+          slantedText:true,
+          slantedTextAngle:90,
+          viewWindow: {
+                 min: 0,
+                 max: response[1]['towerG']
+          }
+      },
+      titleTextStyle: {
+             color:'Black',
+             fontSize: 18,
+             bold: true,
+             align: 'center'
+     },
+     colors: ['#239B56','#F1C40F', '#C0392B'],
+     trendlines: {
+             0: {}
+     },
+     annotations: {
+        textStyle: {
+        auraColor: 'none',
+        opacity: 0.8,
+        fontSize: 11
+        },
+        highContrast: true,
+        stemColor : 'none',
+        stem: {
+          length:0
+        }
+     }
+    };
+
+
+     //tower H for commonlobby activities
+     options15 = {
+      width: 1400,
+      height: 700,
+      chartArea: {
+        top: 150,
+        height: '60%' 
+      },
+      legend: {
+               position: 'right',
+               labeledValueText: 'value',
+               maxLines: 3,
+               textStyle: {
+                    text: '10',
+                    fontSize: 14
+               } 
+      },
+      bar: { groupWidth: '55%' },
+      title: "LUXOR COMMON LOBBY ACTIVITIES TOWER-H - "+DATE,
+      titleTextStyle: {
+         color: '#2c6ed5'
+       },
+      theme: 'stroke-width',
+      isStacked: true,
+      animation: {
+                    duration: 10000, 
+                    easing: 'out'
+      },
+      hAxis: {
+               title: "Activity" ,
+               slantedText:true, 
+               slantedTextAngle:40,
+               fontName: 'Times New Roman',
+               textStyle: {
+                   color: "black",
+                   italic: true,
+                   fontSize:14
+               },
+               viewWindowMode: 'pretty', 
+      },
+      vAxis: {
+          title: "Tower-H Total Unit Count" ,
+          slantedText:true,
+          slantedTextAngle:90,
+          viewWindow: {
+                 min: 0,
+                 max: response[1]['towerH']
+          }
+      },
+      titleTextStyle: {
+             color:'Black',
+             fontSize: 18,
+             bold: true,
+             align: 'center'
+     },
+     colors: ['#239B56','#F1C40F', '#C0392B'],
+     trendlines: {
+             0: {}
+     },
+     annotations: {
+        textStyle: {
+        auraColor: 'none',
+        opacity: 0.8,
+        fontSize: 11
+        },
+        highContrast: true,
+        stemColor : 'none',
+        stem: {
+          length:0
+        }
+     }
+    };
+
+
+     //flatfinish chart
+     chart  = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+     chart1 = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+     chart2  = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
+     chart3 = new google.visualization.ColumnChart(document.getElementById('chart_div3'));
+     chart4  = new google.visualization.ColumnChart(document.getElementById('chart_div4'));
+     chart5 = new google.visualization.ColumnChart(document.getElementById('chart_div5'));
+     chart6 = new google.visualization.ColumnChart(document.getElementById('chart_div6'));
+     chart7 = new google.visualization.ColumnChart(document.getElementById('chart_div7'));
+     //Commonlobby chart
+     chart8  = new google.visualization.ColumnChart(document.getElementById('chart_div8'));
+     chart9 = new google.visualization.ColumnChart(document.getElementById('chart_div9'));
+     chart10  = new google.visualization.ColumnChart(document.getElementById('chart_div10'));
+     chart11 = new google.visualization.ColumnChart(document.getElementById('chart_div11'));
+     chart12  = new google.visualization.ColumnChart(document.getElementById('chart_div12'));
+     chart13 = new google.visualization.ColumnChart(document.getElementById('chart_div13'));
+     chart14 = new google.visualization.ColumnChart(document.getElementById('chart_div14'));
+     chart15 = new google.visualization.ColumnChart(document.getElementById('chart_div15'));
+
+     //pdf button
+     var btnSave = document.getElementById('save-pdf');
+
+     btnSave.addEventListener('click', function () {
+             var reportTime = new Date();
+        
+             var doc = new jsPDF({
+                 orientation: 'landscape',
+                 format: [400, 190]
+             });
+
+             var width = doc.internal.pageSize.width;
+             var height = doc.internal.pageSize.height;
+             
+             //flat finish activity graph
+             cht1 =   chart.getImageURI();
+             cht2 =   chart1.getImageURI();
+             cht3 =   chart2.getImageURI();
+             cht4 =   chart3.getImageURI();
+             cht5 =   chart4.getImageURI();
+             cht6 =   chart5.getImageURI();
+             cht7 =   chart6.getImageURI();
+             cht8 =   chart7.getImageURI();
+             //commonlobby activity graph
+             cht9 =   chart8.getImageURI();
+             cht10 =   chart9.getImageURI();
+             cht11 =   chart10.getImageURI();
+             cht12 =   chart11.getImageURI();
+             cht13 =   chart12.getImageURI();
+             cht14 =   chart13.getImageURI();
+             cht15 =   chart14.getImageURI();
+             cht16 =   chart15.getImageURI();
+
+             doc.setFontSize(9);
+             doc.setFont("Cambria");
+             doc.setFontType("bold");
+
+             //flatfinish activity
+             doc.text(10,15,"Page 1");
+             doc.text(180,15,"LUXOR PROJECT STATUS");
+             doc.text(305,15,reportTime+"");
+             doc.line(10, 20, 390, 20);
+             doc.addImage(cht1, 'SVG', 0, 30, width, 150,undefined,'FAST');
+//             doc.addImage(chart.getImageURI(),-20,10);
+             doc.addPage();
+             doc.text(10,15,"Page 2");
+             doc.text(180,15,"LUXOR PROJECT STATUS");
+             doc.text(305,15,reportTime+"");
+             doc.line(10, 20, 390, 20);
+             doc.addImage(cht2, 'SVG', 0, 30, width, 150,undefined,'FAST');
+             doc.addPage();
+             doc.text(10,15,"Page 3");
+             doc.text(180,15,"LUXOR PROJECT STATUS");
+             doc.text(305,15,reportTime+"");
+             doc.line(10, 20, 390, 20);
+             doc.addImage(cht3, 'SVG', 0, 30, width, 150,undefined,'FAST');
+             doc.addPage();
+             doc.text(10,15,"Page 4");
+             doc.text(180,15,"LUXOR PROJECT STATUS");
+             doc.text(305,15,reportTime+"");
+             doc.line(10, 20, 390, 20);
+             doc.addImage(cht4, 'SVG', 0, 30, width, 150,undefined,'FAST');
+             doc.addPage();
+             doc.text(10,15,"Page 5");
+             doc.text(180,15,"LUXOR PROJECT STATUS");
+             doc.text(305,15,reportTime+"");
+             doc.line(10, 20, 390, 20);
+             doc.addImage(cht5, 'SVG', 0, 30, width, 150,undefined,'FAST');
+             doc.addPage();
+             doc.text(10,15,"Page 6");
+             doc.text(180,15,"LUXOR PROJECT STATUS");
+             doc.text(305,15,reportTime+"");
+             doc.line(10, 20, 390, 20);
+             doc.addImage(cht6, 'SVG', 0, 30, width, 150,undefined,'FAST');
+             doc.addPage();
+             doc.text(10,15,"Page 7");
+             doc.text(180,15,"LUXOR PROJECT STATUS");
+             doc.text(305,15,reportTime+"");
+             doc.line(10, 20, 390, 20);
+             doc.addImage(cht7, 'SVG', 0, 30, width, 150,undefined,'FAST');
+             doc.addPage();
+             doc.text(10,15,"Page 8");
+             doc.text(180,15,"LUXOR PROJECT STATUS");
+             doc.text(305,15,reportTime+"");
+             doc.line(10, 20, 390, 20);
+             doc.addImage(cht8, 'SVG', 0, 30, width, 150,undefined,'FAST');
+             //commonlobby activity
+             doc.addPage();
+             doc.text(10,15,"Page 9");
+             doc.text(180,15,"LUXOR PROJECT STATUS");
+             doc.text(305,15,reportTime+"");
+             doc.line(10, 20, 390, 20);
+             doc.addImage(cht9, 'SVG', 0, 30, width, 150,undefined,'FAST');
+             doc.addPage();
+             doc.text(10,15,"Page 10");
+             doc.text(180,15,"LUXOR PROJECT STATUS");
+             doc.text(305,15,reportTime+"");
+             doc.line(10, 20, 390, 20);
+             doc.addImage(cht10, 'SVG', 0, 30, width, 150,undefined,'FAST');
+             doc.addPage();
+             doc.text(10,15,"Page 11");
+             doc.text(180,15,"LUXOR PROJECT STATUS");
+             doc.text(305,15,reportTime+"");
+             doc.line(10, 20, 390, 20);
+             doc.addImage(cht11, 'SVG', 0, 30, width, 150,undefined,'FAST');
+             doc.addPage();
+             doc.text(10,15,"Page 12");
+             doc.text(180,15,"LUXOR PROJECT STATUS");
+             doc.text(305,15,reportTime+"");
+             doc.line(10, 20, 390, 20);
+             doc.addImage(cht12, 'SVG', 0, 30, width, 150,undefined,'FAST');
+             doc.addPage();
+             doc.text(10,15,"Page 13");
+             doc.text(180,15,"LUXOR PROJECT STATUS");
+             doc.text(305,15,reportTime+"");
+             doc.line(10, 20, 390, 20);
+             doc.addImage(cht13, 'SVG', 0, 30, width, 150,undefined,'FAST');
+             doc.addPage();
+             doc.text(10,15,"Page 14");
+             doc.text(180,15,"LUXOR PROJECT STATUS");
+             doc.text(305,15,reportTime+"");
+             doc.line(10, 20, 390, 20);
+             doc.addImage(cht14, 'SVG', 0, 30, width, 150,undefined,'FAST');
+             doc.addPage();
+             doc.text(10,15,"Page 15");
+             doc.text(180,15,"LUXOR PROJECT STATUS");
+             doc.text(305,15,reportTime+"");
+             doc.line(10, 20, 390, 20);
+             doc.addImage(cht15, 'SVG', 0, 30, width, 150,undefined,'FAST');
+             doc.addPage();
+             doc.text(10,15,"Page 16");
+             doc.text(180,15,"LUXOR PROJECT STATUS");
+             doc.text(305,15,reportTime+"");
+             doc.line(10, 20, 390, 20);
+             doc.addImage(cht16, 'SVG', 0, 30, width, 150,undefined,'FAST');
+
+             doc.save('chart.pdf');
+     }, false);
+
+     //luxor flatfinish activity
+     chart.draw(data, options);
+     chart1.draw(data1, options1);
+     chart2.draw(data2, options2);
+     chart3.draw(data3, options3);
+     chart4.draw(data4, options4);
+     chart5.draw(data5, options5);
+     chart6.draw(data6, options6);
+     chart7.draw(data7, options7);
+     //luxor commonlobby activity
+     chart8.draw(data8, options8);
+     chart9.draw(data9, options9);
+     chart10.draw(data10, options10);
+     chart11.draw(data11, options11);
+     chart12.draw(data12, options12);
+     chart13.draw(data13, options13);
+     chart14.draw(data14, options14);
+     chart15.draw(data15, options15);
+   }
+
+     google.charts.load('current', {packages: ['corechart', 'bar']});
+     google.charts.setOnLoadCallback(drawAxisTickColors);
+
+     //To send http request on page load
+     function httpGet()
+     {
+        DATE = new Date().toDateString();
+
+        response = [];
+
+        var url = ["http://localhost:4000/api/flatfinish/Luxor","http://localhost:4000/api/commonlobby/Luxor"];
+
+        for(let i=0;i<url.length;i++) {
+         console.log(url[i]);   
+        let request = new XMLHttpRequest();
+        request.open("GET", url[i]);
+        request.onreadystatechange = function() {
+           if(request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+                var data = JSON.parse(request.responseText);
+                console.log(data);
+                response.push(data);
+           }
+         }
+         request.send();
+         }
+         return response;
+     }
+
+
+     function requestTwo(url) {
+       let xmlHttp = new XMLHttpRequest();
+           xmlHttp.open( "GET", url, false ); // false for synchronous request
+           xmlHttp.send( null );
+           let data = xmlHttp.responseText;
+           let jsonResponse = JSON.parse(data);
+           return jsonResponse;    
+    }
+
+
+        
+      function requestOne(url,i) {
+        console.log(i);
+
+       var postdata = null;
+       console.log(url);
+
+     }
+
+     //To send http request on click of submit
+     function sendRequest() {
+        var selectedDate = document.getElementById('datepicker').value;
+        var response = [];
+        var postdata= "?referenceDate="+selectedDate;
+
+        var url = ["http://13.251.154.51:3000/api/flatfinish/Luxor","http://13.251.154.51:3000/api/commonlobby/Luxor"];
+
+
+        DATE = new Date(selectedDate).toDateString();
+        
+        for(let i=0;i<url.length;i++) {
+            funcresponse = request(url[i],postdata); 
+            response.push(funcresponse);
+        }
+
+        drawAxisTickColors();
+
+       }
+
+
+       function request(url,postdata) {
+        var http = new XMLHttpRequest();
+        http.open('GET',url+postdata, true);
+        //Send the proper header information along with the request
+        http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        http.onreadystatechange = function() {//Call a function when the state changes.
+        if(http.readyState == 4 && http.status == 200) {
+            var data = http.responseText;
+            return JSON.parse(data);
+            
+         }
+        }
+        http.send("null");
+
+       }
+
+
+       //save image function
+       function saveImage() {
+           var chart_div = document.getElementById('chart_div');
+
+           google.visualization.events.addListener(chart, 'ready', function () {
+               document.getElementById("SaveImage").outerHTML ='<button style="background-color: #4CAF50;padding:1%;border:none;"><a style="text-decoration:none;color:white;" href="' + chart.getImageURI() + '" download>Download Image</a></button>';
+                console.log(chart.getImageURI());
+           });
+
+           chart.draw(data, options);
+       }
+
+
+      </script>
+  </head>
+  <body>
+  <!-- <input style="background-color:#C0392B;color:white;padding:1%;border:none;" type="button" id="SaveImage" value="Generate Image" onclick="httpGet()"> -->
+  <input id="datepicker" width="276" style="margin-left:10%;top: 10px;">
+  <br><br>
+  <div class="button">
+   <input style="background-color:#C0392B;color:white;padding:1%;border:none;" id="newDate" type="button" value="Submit" onclick="sendRequest()">
+   <input style="background-color:#C0392B;color:white;padding:1%;border:none;" id="save-pdf" type="button" value="Save as PDF">
+  </div>
+
+  <!--Flatfinish activity graph-->
+  <div id="chart_div"> </div>  <!--Tower A-->
+  <div id="chart_div1"> </div> <!--Tower B-->
+  <div id="chart_div2"> </div> <!--Tower C-->
+  <div id="chart_div3"> </div> <!--Tower D-->
+  <div id="chart_div4"> </div> <!--Tower E-->
+  <div id="chart_div5"> </div> <!--Tower F-->
+  <div id="chart_div6"> </div> <!--Tower G-->
+  <div id="chart_div7"> </div> <!--Tower H-->
+  <!--commonlobby activity graph-->
+  <div id="chart_div8"> </div>  <!--Tower A-->
+  <div id="chart_div9"> </div> <!--Tower B-->
+  <div id="chart_div10"> </div> <!--Tower C-->
+  <div id="chart_div11"> </div> <!--Tower D-->
+  <div id="chart_div12"> </div> <!--Tower E-->
+  <div id="chart_div13"> </div> <!--Tower F-->
+  <div id="chart_div14"> </div> <!--Tower G-->
+  <div id="chart_div15"> </div> <!--Tower H-->
+
+  <div class="content"><!--loader div start-->
+  </div><!--End Of Loader div-->
+  <script>
+    $(function() {
+        $(".preload").fadeOut(4000, function() {
+            $(".content").fadeIn(1000);        
+        });
+    });
+
+    $('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4'
+    });
+  </script>
+ </body>
+</html>
